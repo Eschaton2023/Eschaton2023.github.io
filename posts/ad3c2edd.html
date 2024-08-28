@@ -1,0 +1,236 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【方法】Git+NodeJS+Hexo+Github搭建博客的方法 | Eschaton的博客</title><meta name="author" content="Eschaton"><meta name="copyright" content="Eschaton"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="参考博客：  从零开始搭建：https:&#x2F;&#x2F;fanyfull.github.io&#x2F;2021&#x2F;10&#x2F;16&#x2F;Github-Hexo-真-从零开始搭建-GitHub-静态博客&#x2F; butterfly主题配置参考：https:&#x2F;&#x2F;butterfly.js.org&#x2F;tags&#x2F;butterfly&#x2F;page&#x2F;2&#x2F; gitpage使用参考：https:&#x2F;&#x2F;docs.github.com&#x2F;zh&#x2F;pages&#x2F;quick">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【方法】Git+NodeJS+Hexo+Github搭建博客的方法">
+<meta property="og:url" content="http://example.com/posts/ad3c2edd.html">
+<meta property="og:site_name" content="Eschaton的博客">
+<meta property="og:description" content="参考博客：  从零开始搭建：https:&#x2F;&#x2F;fanyfull.github.io&#x2F;2021&#x2F;10&#x2F;16&#x2F;Github-Hexo-真-从零开始搭建-GitHub-静态博客&#x2F; butterfly主题配置参考：https:&#x2F;&#x2F;butterfly.js.org&#x2F;tags&#x2F;butterfly&#x2F;page&#x2F;2&#x2F; gitpage使用参考：https:&#x2F;&#x2F;docs.github.com&#x2F;zh&#x2F;pages&#x2F;quick">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/img202407031355805.jpg">
+<meta property="article:published_time" content="2024-07-26T07:38:01.000Z">
+<meta property="article:modified_time" content="2024-08-27T09:25:14.388Z">
+<meta property="article:author" content="Eschaton">
+<meta property="article:tag" content="Github">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="自建">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/img202407031355805.jpg"><link rel="shortcut icon" href="https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/img202407031355805.jpg"><link rel="canonical" href="http://example.com/posts/ad3c2edd.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【方法】Git+NodeJS+Hexo+Github搭建博客的方法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-08-27 17:25:14'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/img202407031355805.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文库</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background: transparent"><nav id="nav"><span id="blog-info"><a href="/" title="Eschaton的博客"><img class="site-icon" src="https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/img202407031355805.jpg"/><span class="site-name">Eschaton的博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文库</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【方法】Git+NodeJS+Hexo+Github搭建博客的方法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-07-26T07:38:01.000Z" title="发表于 2024-07-26 15:38:01">2024-07-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-08-27T09:25:14.388Z" title="更新于 2024-08-27 17:25:14">2024-08-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90%E6%96%B9%E6%B3%95%E3%80%91/">【方法】</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【方法】Git+NodeJS+Hexo+Github搭建博客的方法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>参考博客：</p>
+<ol>
+<li>从零开始搭建：<a target="_blank" rel="noopener" href="https://fanyfull.github.io/2021/10/16/Github-Hexo-%E7%9C%9F-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA-GitHub-%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/">https://fanyfull.github.io/2021/10/16/Github-Hexo-真-从零开始搭建-GitHub-静态博客/</a></li>
+<li>butterfly主题配置参考：<a target="_blank" rel="noopener" href="https://butterfly.js.org/tags/butterfly/page/2/">https://butterfly.js.org/tags/butterfly/page/2/</a></li>
+<li>gitpage使用参考：<a target="_blank" rel="noopener" href="https://docs.github.com/zh/pages/quickstart">https://docs.github.com/zh/pages/quickstart</a></li>
+<li>hexo配置文档：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">https://hexo.io/zh-cn/docs/</a></li>
+<li>butterfly主题详解：<a target="_blank" rel="noopener" href="https://www.mahaofei.com/post/a33e3ec">https://www.mahaofei.com/post/a33e3ec</a></li>
+<li>yun主题：<a target="_blank" rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun">https://github.com/YunYouJun/hexo-theme-yun</a></li>
+</ol>
+<hr>
+<h1 id="Github创建仓库"><a href="#Github创建仓库" class="headerlink" title="Github创建仓库"></a>Github创建仓库</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/">https://github.com/</a><br>登录 GitHub 账号，新建一个名为 <code>username.github.io</code>的仓库。记下自己的<strong>用户名</strong>、<strong>邮箱</strong>。记得</li>
+</ul>
+<hr>
+<h1 id="NodeJS安装与配置"><a href="#NodeJS安装与配置" class="headerlink" title="NodeJS安装与配置"></a>NodeJS安装与配置</h1><ul>
+<li>下载：<a target="_blank" rel="noopener" href="https://nodejs.org/">https://nodejs.org/</a></li>
+<li>记得勾选<code>add to path</code>，要不还得自己去把<code>D:\~\Git\cmd</code>添加到环境变量Path里。</li>
+<li>安装完成后cmd中使用<code>node -v</code>和<code>npm -v</code>验证安装。</li>
+</ul>
+<hr>
+<h1 id="Git安装与配置"><a href="#Git安装与配置" class="headerlink" title="Git安装与配置"></a>Git安装与配置</h1><ul>
+<li>下载：<a target="_blank" rel="noopener" href="https://git-scm.com/">https://git-scm.com/</a></li>
+</ul>
+<p><strong>1.</strong> 默认安装即可，安装完成后去目录<code>C:\Users\用户名\.ssh</code>右键后点击<code>Open Git Bash Here</code><br><strong>2.</strong> 使用以下代码配置<strong>用户名</strong>和<strong>邮箱</strong>，替换成自己github的即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;user_name&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email &quot;user_email&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>3.</strong> 使用以下命令生成密钥对，推荐是起个比较独特的名字之后好找，然后也推荐使用口令保护自己的私钥，这里的口令相当于智能密码钥匙的PIN，都是用来保护私钥的，如果私钥文件泄露，别人不知道你的口令也无法使用该私钥。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;user.email&quot;</span><br></pre></td></tr></table></figure>
+<p>执行完成后会在.ssh文件夹下生成两个文件“文件名”，“文件名.pub”，比如<code>githubioblog</code>和<code>githubioblog.pub</code>，前者是私钥，后者是公钥，私钥是需要保密的，公钥是公开的。使用下面的命令查看自己的密钥：<code>ssh-add -l</code>，如果返回说没有密钥，那就用这条命令添加私钥文件<code>ssh-add 文件名</code>，这条命令会添加<code>C:\Users\用户名\.ssh\文件名</code>路径下的私钥文件。</p>
+<p>为了避免以后每次开一个git终端都要添加一次密钥，在.ssh文件夹下建一个文件<code>config</code>，内容用记事本写入，用户名和文件名替换成自己的用户名和私钥文件名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host * </span><br><span class="line">  IgnoreUnknown UseKeychain</span><br><span class="line">  AddKeysToAgent yes</span><br><span class="line">  UseKeychain yes</span><br><span class="line">  IdentityFile C:\Users\用户名\.ssh\文件名</span><br></pre></td></tr></table></figure>
+
+<p><strong>4.</strong> 在Github访问<code>https://github.com/settings/ssh/new</code>将公钥告知Github，名称按自己喜好填，作用选择Auth认证用，然后将公钥用文本文档打开将内容粘贴上去，公钥格式大概是这样，中间隐去了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-rsa AAAAB3NzaC1yc2EAA……XXX……8Kk= lyy4XXX@XXX.com</span><br></pre></td></tr></table></figure>
+<p><strong>5.</strong> 使用如下命令让ssh-agent启动，执行完以后看不到什么但其实已经启动了。之后每次ssh连接的时候都需要先启动ssh-agent。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-agent bash</span><br></pre></td></tr></table></figure>
+<p><strong>6.</strong> 使用如下命令测试与github的连接是否成功。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p>**7. **可选配置代理，如果有的话，socks是使用如下命令，端口需要替换成自己的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy &#x27;socks5://127.0.0.1:端口&#x27;</span><br><span class="line">git config --global https.proxy &#x27;socks5://127.0.0.1:端口&#x27;</span><br></pre></td></tr></table></figure>
+<p>比如我使用hysteria2的话可以用如下命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy &#x27;http://127.0.0.1:7897&#x27;</span><br><span class="line">git config --global https.proxy &#x27;http://127.0.0.1:7897&#x27;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="使用cnpm替代npm命令"><a href="#使用cnpm替代npm命令" class="headerlink" title="使用cnpm替代npm命令"></a>使用cnpm替代npm命令</h2><p>npm命令因网络原因用不了的话，可以在Git Bash中使用以下命令安装cnpm，然后就可以用cnpm替代npm命令了。<br><code>npm install cnpm -g --registry=https://registry.npmmirror.com</code></p>
+<hr>
+<h1 id="Hexo本地安装与配置"><a href="#Hexo本地安装与配置" class="headerlink" title="Hexo本地安装与配置"></a>Hexo本地安装与配置</h1><ul>
+<li>官网：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">https://hexo.io/zh-cn/</a></li>
+<li>文档：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/index.html">https://hexo.io/zh-cn/docs/index.html</a></li>
+</ul>
+<ol>
+<li><p>随便路径打开一个终端（文件夹地址栏输入cmd回车），输入下面的指令安装Hexo</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p>网不好的可能会慢，界面也没啥进度提示，反正等到返回added多少多少package就是安装完了。使用这个命令测试一下<code>npx hexo</code>能执行就ok。</p>
+</li>
+<li><p>建立一个文件夹用于存放博客文件，然后在该文件夹下开个cmd终端（文件夹地址栏输入cmd回车），输入<code>hexo init</code>进行本地博客目录初始化。如果网络不通可以尝试使用上面的代理配置。</p>
+</li>
+<li><p>清理静态文件，生成静态文件，换了主题、写了文章之类修改后清理旧文件，生成新文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure></li>
+<li><p>启动本地服务进行预览，输入命令后访问<code>http://localhost:4000/</code>应该就能看到本地页面了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="（可选）Hexo更换主题butterfly"><a href="#（可选）Hexo更换主题butterfly" class="headerlink" title="（可选）Hexo更换主题butterfly"></a>（可选）Hexo更换主题butterfly</h2><p>可以去<code>https://hexo.io/themes/</code>挑，这里以butterfly为例：<br>预览：<a target="_blank" rel="noopener" href="https://butterfly.js.org/">https://butterfly.js.org/</a><br>仓库：<a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">https://github.com/jerryc127/hexo-theme-butterfly</a><br>安装教程：<a target="_blank" rel="noopener" href="https://butterfly.js.org/tags/butterfly/page/2/">https://butterfly.js.org/tags/butterfly/page/2/</a><br>一些其他主题</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">网址导航：</span><br><span class="line">https://github.com/HCLonely/hexo-theme-webstack</span><br><span class="line">明日方舟</span><br><span class="line">https://github.com/Yue-plus/hexo-theme-arknights</span><br></pre></td></tr></table></figure>
+<p>如果要切回默认的修改<code>_config.yml</code>中theme为默认的<code>theme: landscape</code>即可</p>
+<hr>
+<h1 id="Hexo上传github并进行同步"><a href="#Hexo上传github并进行同步" class="headerlink" title="Hexo上传github并进行同步"></a>Hexo上传github并进行同步</h1><p>Git Bash安装部署组件：<br><code>cnpm install hexo-deployer-git --save</code><br>安装完成后使用<code>hexo d</code>即可部署到github上。<br>然后进入对应仓库<code>Settings</code>页面</p>
+<hr>
+<h1 id="Hexo文章操作"><a href="#Hexo文章操作" class="headerlink" title="Hexo文章操作"></a>Hexo文章操作</h1><ol>
+<li>新建文章<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new post 【文章名】</span><br></pre></td></tr></table></figure></li>
+<li>新建分类</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
+<p>找到<code>source/categories/index.md</code>并添加<code>type: &quot;categories&quot;</code><br>3. 新建标签</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
+<p>找到<code>source/tags/index.md</code>并添加<code>type: &quot;tags&quot;</code><br>4. 分类和标签的使用<br>文章的开头添加相关分类即可,比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">title: 【方法】Github+PicGO搭建图床</span><br><span class="line">date: 2024-07-26 11:07:37</span><br><span class="line">tags:</span><br><span class="line">- 图床</span><br><span class="line">- Github</span><br><span class="line">- 自建</span><br><span class="line">categories:</span><br><span class="line">- 【方法】</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Eschaton</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/posts/ad3c2edd.html">http://example.com/posts/ad3c2edd.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Eschaton的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Github/">Github</a><a class="post-meta__tags" href="/tags/Hexo/">Hexo</a><a class="post-meta__tags" href="/tags/%E8%87%AA%E5%BB%BA/">自建</a></div><div class="post_share"><div class="social-share" data-image="https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/img202407031355805.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/bd4eef34.html" title="【方法】Hexo+Butterfly的_config.yml文件配置"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【方法】Hexo+Butterfly的_config.yml文件配置</div></div></a></div><div class="next-post pull-right"><a href="/posts/837eaf23.html" title="【方法】Win11右键菜单/禁止更新/卸载小组件"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【方法】Win11右键菜单/禁止更新/卸载小组件</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/f593d515.html" title="【方法】Github+PicGO搭建图床"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-07-26</div><div class="title">【方法】Github+PicGO搭建图床</div></div></a></div><div><a href="/posts/58835a4d.html" title="【方法】加速github资源访问"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-07-26</div><div class="title">【方法】加速github资源访问</div></div></a></div><div><a href="/posts/bd4eef34.html" title="【方法】Hexo+Butterfly的_config.yml文件配置"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-07-26</div><div class="title">【方法】Hexo+Butterfly的_config.yml文件配置</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Github%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93"><span class="toc-number">1.</span> <span class="toc-text">Github创建仓库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NodeJS%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">NodeJS安装与配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">Git安装与配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8cnpm%E6%9B%BF%E4%BB%A3npm%E5%91%BD%E4%BB%A4"><span class="toc-number">3.1.</span> <span class="toc-text">使用cnpm替代npm命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hexo%E6%9C%AC%E5%9C%B0%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text">Hexo本地安装与配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89Hexo%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98butterfly"><span class="toc-number">4.1.</span> <span class="toc-text">（可选）Hexo更换主题butterfly</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hexo%E4%B8%8A%E4%BC%A0github%E5%B9%B6%E8%BF%9B%E8%A1%8C%E5%90%8C%E6%AD%A5"><span class="toc-number">5.</span> <span class="toc-text">Hexo上传github并进行同步</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hexo%E6%96%87%E7%AB%A0%E6%93%8D%E4%BD%9C"><span class="toc-number">6.</span> <span class="toc-text">Hexo文章操作</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">&copy;2024 By Eschaton</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script src="/js/background.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

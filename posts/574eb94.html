@@ -1,0 +1,166 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【方法】构建基于文档的本地知识AI | Eschaton的博客</title><meta name="author" content="Eschaton"><meta name="copyright" content="Eschaton"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Ollama：https:&#x2F;&#x2F;ollama.comOllama模型：https:&#x2F;&#x2F;ollama.com&#x2F;library&#x2F;AnythingLLM：https:&#x2F;&#x2F;anythingllm.com&#x2F; 思路：本地运行 Ollama 的模型，并将这些模型集成到 AnythingLLM 的GUI本地应用中。实现本地AI学习文档内容并根据文档内容应答。  下载Ollama程序，安装，运行，会有一个托盘小程序，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【方法】构建基于文档的本地知识AI">
+<meta property="og:url" content="http://example.com/posts/574eb94.html">
+<meta property="og:site_name" content="Eschaton的博客">
+<meta property="og:description" content="Ollama：https:&#x2F;&#x2F;ollama.comOllama模型：https:&#x2F;&#x2F;ollama.com&#x2F;library&#x2F;AnythingLLM：https:&#x2F;&#x2F;anythingllm.com&#x2F; 思路：本地运行 Ollama 的模型，并将这些模型集成到 AnythingLLM 的GUI本地应用中。实现本地AI学习文档内容并根据文档内容应答。  下载Ollama程序，安装，运行，会有一个托盘小程序，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/img202407031355805.jpg">
+<meta property="article:published_time" content="2024-08-27T06:21:09.000Z">
+<meta property="article:modified_time" content="2024-08-27T09:25:14.458Z">
+<meta property="article:author" content="Eschaton">
+<meta property="article:tag" content="AI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/img202407031355805.jpg"><link rel="shortcut icon" href="https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/img202407031355805.jpg"><link rel="canonical" href="http://example.com/posts/574eb94.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【方法】构建基于文档的本地知识AI',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-08-27 17:25:14'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/img202407031355805.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文库</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background: transparent"><nav id="nav"><span id="blog-info"><a href="/" title="Eschaton的博客"><img class="site-icon" src="https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/img202407031355805.jpg"/><span class="site-name">Eschaton的博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文库</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【方法】构建基于文档的本地知识AI</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-08-27T06:21:09.000Z" title="发表于 2024-08-27 14:21:09">2024-08-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-08-27T09:25:14.458Z" title="更新于 2024-08-27 17:25:14">2024-08-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90%E6%96%B9%E6%B3%95%E3%80%91/">【方法】</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【方法】构建基于文档的本地知识AI"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Ollama：<a target="_blank" rel="noopener" href="https://ollama.com/">https://ollama.com</a><br>Ollama模型：<a target="_blank" rel="noopener" href="https://ollama.com/library/">https://ollama.com/library/</a><br>AnythingLLM：<a target="_blank" rel="noopener" href="https://anythingllm.com/">https://anythingllm.com/</a></p>
+<p>思路：本地运行 Ollama 的模型，并将这些模型集成到 AnythingLLM 的GUI本地应用中。实现本地AI学习文档内容并根据文档内容应答。</p>
+<ol>
+<li>下载Ollama程序，安装，运行，会有一个托盘小程序，然后命令行里<code>ollama help</code>可以返回帮助内容不报错就是已经安装ok了。</li>
+<li>Ollama模型的网页下载相应的模型，比如llama3.1，选个小一些的模型（比如8b 4.7GB），找到拉取代码，比如<code>ollama run llama3.1</code>，在命令行执行。执行完之后在命令行其实已经可以和该模型进行对话了。使用&#x2F;bye退出对话。<br><img src="https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/202408271445516.webp"></li>
+<li>下载安装AnythingLLM程序。</li>
+<li>安装，运行，会让你选择使用的模型，在上面选那个羊驼（Ollama）即可。</li>
+<li>进入程序后创建工作区，有上传和配置两个按钮<br><img src="https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/202408271520240.webp"><br>上传自己想让AI学习的文档内容 -&gt; Move to WorkSpace -&gt;Save and Embed，即可激活。文档需要能识别到文字内容。可以PDF、WORD、TXT之类的，图片类好像暂时不行。<br><img src="https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/202408271526743.webp"><br>然后在设置里配置仅返回学习到的内容。<br><img src="https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/202408271524720.webp"></li>
+<li>测试询问文档里的问题，看是否回答正确。</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Eschaton</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/posts/574eb94.html">http://example.com/posts/574eb94.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Eschaton的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a></div><div class="post_share"><div class="social-share" data-image="https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/img202407031355805.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/18399edd.html" title="【工具】常用DNS"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【工具】常用DNS</div></div></a></div><div class="next-post pull-right"><a href="/posts/afb69919.html" title="【知识】深度学习相关概念笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【知识】深度学习相关概念笔记</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/afb69919.html" title="【知识】深度学习相关概念笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-27</div><div class="title">【知识】深度学习相关概念笔记</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/img202407031355805.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Eschaton</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:lyy419479406@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">无事生事</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/18399edd.html" title="【工具】常用DNS">【工具】常用DNS</a><time datetime="2024-08-27T07:42:21.000Z" title="发表于 2024-08-27 15:42:21">2024-08-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/574eb94.html" title="【方法】构建基于文档的本地知识AI">【方法】构建基于文档的本地知识AI</a><time datetime="2024-08-27T06:21:09.000Z" title="发表于 2024-08-27 14:21:09">2024-08-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/afb69919.html" title="【知识】深度学习相关概念笔记">【知识】深度学习相关概念笔记</a><time datetime="2024-08-27T06:00:39.000Z" title="发表于 2024-08-27 14:00:39">2024-08-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/315a12ce.html" title="【方法】白嫖CloudflareR2存储10GB空间建图床">【方法】白嫖CloudflareR2存储10GB空间建图床</a><time datetime="2024-08-16T03:42:01.000Z" title="发表于 2024-08-16 11:42:01">2024-08-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/3bbf3c24.html" title="【工具】Foxmail集中管理各个邮箱邮件">【工具】Foxmail集中管理各个邮箱邮件</a><time datetime="2024-08-16T03:24:17.000Z" title="发表于 2024-08-16 11:24:17">2024-08-16</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">&copy;2024 By Eschaton</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script src="/js/background.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
