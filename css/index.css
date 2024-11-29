@@ -1509,7 +1509,7 @@ input::placeholder {
   z-index: -999;
   width: 100%;
   height: 100%;
-  background: url(https://raw.githubusercontent.com/Eschaton2023/Picture/pic/202408051028614.webp);
+  background: url(https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/202408051028614.webp);
   background-attachment: local;
   background-position: center;
   background-size: cover;
@@ -3920,9 +3920,10 @@ h1.page-title + .tag-cloud-list {
   width: 100%;
 }
 #  background-color: $light-blue {
-  background-position: center center;
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: scroll;
 }
 #  transition: all .5s.full_page {
   height: 100vh;

@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【方法】AmazonAWS搭建笔记 | Eschaton的博客</title><meta name="author" content="Eschaton"><meta name="copyright" content="Eschaton"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这是大概23年的时候搞得，站已经过期了，留个笔记记录。到搭建完成后的部分更像是Docker笔记所以把后半部分放到Docker操作笔记里了。 亚马逊账户首先需要一张VISA卡，我在申请的时候工行有免年费的星座卡，还可以挑一挑，手机上下个app就可以办，记得看一下年费信息和支持币种，免费的比较好，支持币种要包含美元。 然后去亚马逊建立账户，亚马逊因为只是免费一年所以建立账户没有什么难的，自己建个邮箱就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【方法】AmazonAWS搭建笔记">
+<meta property="og:url" content="http://example.com/posts/ae43a55f.html">
+<meta property="og:site_name" content="Eschaton的博客">
+<meta property="og:description" content="这是大概23年的时候搞得，站已经过期了，留个笔记记录。到搭建完成后的部分更像是Docker笔记所以把后半部分放到Docker操作笔记里了。 亚马逊账户首先需要一张VISA卡，我在申请的时候工行有免年费的星座卡，还可以挑一挑，手机上下个app就可以办，记得看一下年费信息和支持币种，免费的比较好，支持币种要包含美元。 然后去亚马逊建立账户，亚马逊因为只是免费一年所以建立账户没有什么难的，自己建个邮箱就">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/img202407031355805.jpg">
+<meta property="article:published_time" content="2024-11-29T02:05:46.000Z">
+<meta property="article:modified_time" content="2024-11-29T03:24:44.993Z">
+<meta property="article:author" content="Eschaton">
+<meta property="article:tag" content="自建">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/img202407031355805.jpg"><link rel="shortcut icon" href="https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/img202407031355805.jpg"><link rel="canonical" href="http://example.com/posts/ae43a55f.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//busuanzi.ibruce.info"><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【方法】AmazonAWS搭建笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-11-29 11:24:44'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/doublelan.css"><link rel="stylesheet" href="/css/modify.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/img202407031355805.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">36</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">33</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文库</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background: transparent"><nav id="nav"><span id="blog-info"><a href="/" title="Eschaton的博客"><img class="site-icon" src="https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/img202407031355805.jpg"><span class="site-name">Eschaton的博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文库</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【方法】AmazonAWS搭建笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-29T02:05:46.000Z" title="发表于 2024-11-29 10:05:46">2024-11-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-29T03:24:44.993Z" title="更新于 2024-11-29 11:24:44">2024-11-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E3%80%90%E6%96%B9%E6%B3%95%E3%80%91/">【方法】</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【方法】AmazonAWS搭建笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>这是大概23年的时候搞得，站已经过期了，留个笔记记录。到搭建完成后的部分更像是Docker笔记所以把后半部分放到Docker操作笔记里了。</p>
+<h1 id="亚马逊账户"><a href="#亚马逊账户" class="headerlink" title="亚马逊账户"></a>亚马逊账户</h1><p>首先需要一张VISA卡，我在申请的时候工行有免年费的星座卡，还可以挑一挑，手机上下个app就可以办，记得看一下年费信息和支持币种，免费的比较好，支持币种要包含美元。</p>
+<p>然后去亚马逊建立账户，亚马逊因为只是免费一年所以建立账户没有什么难的，自己建个邮箱就可以建好，付款信息填刚才申请的visa卡信息。</p>
+<h1 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h1><p><a target="_blank" rel="noopener" href="https://nic.eu.org/">https://nic.eu.org/</a><br>去这个网站注册一个账户，然后申请新域名，在域名管理的NameService填上之后想使用的DNS解析服务器，比如如果我使用cloudflare就是填<code>braden.ns.cloudflare.com</code>和<code>kristin.ns.cloudflare.com</code>，如果是dnspod就填<code>capella.dnspod.net</code>和<code>cherry.dnspod.net</code>。具体区域不同可能使用的也不同，在申请域名前登录cloudfare或dnspod注册之后添加站点域名可以获取相关地址。</p>
+<h1 id="Linux服务器获取root权限"><a href="#Linux服务器获取root权限" class="headerlink" title="Linux服务器获取root权限"></a>Linux服务器获取root权限</h1><p>第一次还是从网页登录，之后可以putty或者xterm之类的登录<br>命令行界面时<br>su root</p>
+<p>输入密码<br>使用root账户登陆图形界面<br>修改/etc/gdm/custom.conf文件，实现root用户免密码自动登陆<br><code>daemon</code>下增加<br>AutomaticLoginEnable=True<br>AutomaticLogin=root</p>
+<p>vi /etc/ssh/sshd_config<br>PermitRootogin yes</p>
+<h1 id="Linux服务器常用操作命令"><a href="#Linux服务器常用操作命令" class="headerlink" title="Linux服务器常用操作命令"></a>Linux服务器常用操作命令</h1><p>查询ip地址ifconfig<br>查询网络、端口状态netstat -nlatp<br>查找文件find / -name 文件名<br>查找文件yum list all | grep 文件名<br>查看目前跑的进程ps aux<br>查看目前的端口情况netstat -tuln<br>查看特定端口的进程lsof -i :3306</p>
+<p><strong>SSHDf服务相关</strong><br>虚拟机网络编辑器 NAT设置 端口转发<br>systemctl status sshd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 查看服务状态<br>systemctl start sshd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;打开服务<br>systemctl stop sshd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;关闭服务<br>systemctl restart sshd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 重启服务<br>systemctl enable sshd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设定开机启动<br>systemctl disable sshd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 设定开机不启动<br>systemctl reload sshd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 重新加载配置文件<br>systemctl&nbsp;list-units&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;列出已开启服务当前状态<br><strong>端口就代表服务：0-65535</strong><br>固定端口：0-1023<br>FTP：20&amp;21<br>SSH协议，全称：安全外壳协议，占用22端口<br>Telnet：明文传输，不太安全，默认端口23<br>http：80<br>https：443<br>dns：53<br>pop3：邮件传输 110<br>浮动端口：1024-65535<br>mysql：3306<br>Windows-RemoteDesktop：3389<br>QQ：4000-4100<br>netstat -tulpn | grep LISTEN查找所有监听端口</p>
+<h1 id="Github下载代理加速"><a href="#Github下载代理加速" class="headerlink" title="Github下载代理加速"></a>Github下载代理加速</h1><p><a target="_blank" rel="noopener" href="https://ghproxy.com/">https://ghproxy.com/</a><br>比如想下载<br><a target="_blank" rel="noopener" href="https://github.com/Eschaton2023/gitpagetest.github.io/archive/refs/heads/main.zip">https://github.com/Eschaton2023/gitpagetest.github.io/archive/refs/heads/main.zip</a><br>可以通过访问来加速<br><a target="_blank" rel="noopener" href="https://ghproxy.com/https://github.com/Eschaton2023/gitpagetest.github.io/archive/refs/heads/main.zip">https://ghproxy.com/https://github.com/Eschaton2023/gitpagetest.github.io/archive/refs/heads/main.zip</a><br>类似的比如<br><a target="_blank" rel="noopener" href="https://ghproxy.com/https://github.com/zzzgydi/clash-verge/releases/download/v1.3.6/Clash.Verge_1.3.6_x64_zh-CN.msi">https://ghproxy.com/https://github.com/zzzgydi/clash-verge/releases/download/v1.3.6/Clash.Verge_1.3.6_x64_zh-CN.msi</a></p>
+<h1 id="CentOS7-安装docker"><a href="#CentOS7-安装docker" class="headerlink" title="CentOS7 安装docker"></a>CentOS7 安装docker</h1><ol>
+<li>$ uname -r&nbsp;&nbsp;&nbsp; //检查CentOS系统内核版本高于3.10</li>
+<li>$ sudo yum update&nbsp;&nbsp; //确保yum包更新到最新</li>
+<li>$ sudo yum remove docker&nbsp; docker-common docker-selinux docker-engine&nbsp;&nbsp; //卸载旧版本docker</li>
+<li>$ sudo yum install -y yum-utils device-mapper-persistent-data lvm2&nbsp; //安装软件包，yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的</li>
+<li>$ sudo yum-config-manager –add-repo <a target="_blank" rel="noopener" href="https://download.docker.com/linux/centos/docker-ce.repo">https://download.docker.com/linux/centos/docker-ce.repo</a>&nbsp;&nbsp;&nbsp; //设置yum源</li>
+<li>$ yum list docker-ce –showduplicates | sort -r&nbsp; //列出仓库中docker版本</li>
+<li>$ sudo yum install docker-ce<br>&nbsp; $ sudo yum install docker-ce-17.12.0.ce&nbsp;&nbsp; //选自己要安装的版本</li>
+<li>$ sudo systemctl start docker<br>$ sudo systemctl enable docker&nbsp;&nbsp; //启动并加入开机启动</li>
+<li>$ docker version&nbsp;&nbsp;&nbsp; //验证是否安装成功</li>
+</ol>
+<h1 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h1><p><strong>卸载Docker</strong><br>yum remove docker <br>docker-client <br>docker-client-latest <br>docker-common <br>docker-latest <br>docker-latest-logrotate <br>docker-logrotate <br>docker-selinux <br>docker-engine-selinux <br>docker-engine <br>docker-ce</p>
+<p><strong>安装yum工具</strong><br>yum install -y yum-utils <br>&nbsp;&nbsp;&nbsp;&nbsp; device-mapper-persistent-data <br>&nbsp;&nbsp;&nbsp;&nbsp; lvm2 –skip-broken<br>&nbsp;&nbsp;&nbsp;&nbsp;<br><strong>centos镜像源更改</strong>：<br>编辑 /etc/yum.repos.d/CentOS-Base.repo 文件<br>把4处网址的mirrorlist注释掉，去掉baseurl的注释，把地址替换为mirrors.tuna.tsinghua.edu.cn<br>dd：删除光标所在那一列</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">[base]</span><br><span class="line">name=CentOS-$releasever - Base</span><br><span class="line">baseurl=https://mirrors.tuna.tsinghua.edu.cn/centos/$releasever/os/$basearch/</span><br><span class="line">#注释此处mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=os</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-7</span><br><span class="line"></span><br><span class="line">#released updates</span><br><span class="line">[updates]</span><br><span class="line">name=CentOS-$releasever - Updates</span><br><span class="line">baseurl=https://mirrors.tuna.tsinghua.edu.cn/centos/$releasever/updates/$basearch/</span><br><span class="line">#注释此处mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=updates</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-7</span><br><span class="line"></span><br><span class="line">#additional packages that may be useful</span><br><span class="line">[extras]</span><br><span class="line">name=CentOS-$releasever - Extras</span><br><span class="line">baseurl=https://mirrors.tuna.tsinghua.edu.cn/centos/$releasever/extras/$basearch/</span><br><span class="line">#注释此处mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=extras</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-7</span><br><span class="line"></span><br><span class="line">#additional packages that extend functionality of existing packages</span><br><span class="line">[centosplus]</span><br><span class="line">name=CentOS-$releasever - Plus</span><br><span class="line">baseurl=https://mirrors.tuna.tsinghua.edu.cn/centos/$releasever/centosplus/$basearch/</span><br><span class="line">#注释此处mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=centosplus</span><br><span class="line">gpgcheck=1</span><br><span class="line">enabled=0</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-7</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>更新软件包缓存</strong><br>yum makecache<br>yum install -y docker</p>
+<p><strong>配置docker镜像加速器</strong><br>sudo mkdir -p /etc/docker<br>sudo tee /etc/docker/daemon.json &lt;&lt;-‘EOF’<br>{<br>&nbsp; “registry-mirrors”: [“<a target="_blank" rel="noopener" href="https://xfewuv42.mirror.aliyuncs.com" ]"="">https://xfewuv42.mirror.aliyuncs.com"]</a><br>}<br>EOF<br>sudo systemctl daemon-reload<br>sudo systemctl restart docker</p>
+<h1 id="Docker-compose安装："><a href="#Docker-compose安装：" class="headerlink" title="Docker-compose安装："></a>Docker-compose安装：</h1><p>1.安装Docker-compose到/usr/local/bin/docker-compose<br>参考(<a target="_blank" rel="noopener" href="https://docs.docker.com/compose/install/#install-compose">https://docs.docker.com/compose/install/#install-compose</a>)<br>命令：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose</span><br></pre></td></tr></tbody></table></figure>
+<p><a target="_blank" rel="noopener" href="https://github.com/docker/compose/releases/download/v2.2.0/docker-compose-linux-x86_64">https://github.com/docker/compose/releases/download/v2.2.0/docker-compose-linux-x86_64</a></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -L " https://github.com/docker/compose/releases/download/2.2.0/docker-compose- $(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose</span><br></pre></td></tr></tbody></table></figure>
+<p>2.添加目录权限sudo chmod +x /usr/local/bin/docker-compose</p>
+<p>3.查看Docker-compose版本：docker-compose –version</p>
+<h1 id="pip安装"><a href="#pip安装" class="headerlink" title="pip安装"></a>pip安装</h1><p>yum install python-pip</p>
+<p>wget <a target="_blank" rel="noopener" href="https://bootstrap.pypa.io/pip/2.7/get-pip.py">https://bootstrap.pypa.io/pip/2.7/get-pip.py</a></p>
+<p>python get-pip.py</p>
+<p>pip list</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Eschaton</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/posts/ae43a55f.html">http://example.com/posts/ae43a55f.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Eschaton的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%87%AA%E5%BB%BA/">自建</a></div><div class="post_share"><div class="social-share" data-image="https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Eschaton2023/Picture/pic/img202407031355805.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer=""></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/c91d58ff.html" title="【方法】Docker相关应用部署及操作笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【方法】Docker相关应用部署及操作笔记</div></div></a></div><div class="next-post pull-right"><a href="/posts/705c7daf.html" title="【方法】C++写俄罗斯方块Tetris"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【方法】C++写俄罗斯方块Tetris</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/f593d515.html" title="【方法】Github+PicGO搭建图床"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-07-26</div><div class="title">【方法】Github+PicGO搭建图床</div></div></a></div><div><a href="/posts/ad3c2edd.html" title="【方法】Git+NodeJS+Hexo+Github搭建博客的方法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-07-26</div><div class="title">【方法】Git+NodeJS+Hexo+Github搭建博客的方法</div></div></a></div><div><a href="/posts/ef3fa9c1.html" title="【工具】装机安装软件合集"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-01</div><div class="title">【工具】装机安装软件合集</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%9A%E9%A9%AC%E9%80%8A%E8%B4%A6%E6%88%B7"><span class="toc-number">1.</span> <span class="toc-text">亚马逊账户</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%9F%E5%90%8D"><span class="toc-number">2.</span> <span class="toc-text">域名</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%8E%B7%E5%8F%96root%E6%9D%83%E9%99%90"><span class="toc-number">3.</span> <span class="toc-text">Linux服务器获取root权限</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="toc-number">4.</span> <span class="toc-text">Linux服务器常用操作命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Github%E4%B8%8B%E8%BD%BD%E4%BB%A3%E7%90%86%E5%8A%A0%E9%80%9F"><span class="toc-number">5.</span> <span class="toc-text">Github下载代理加速</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CentOS7-%E5%AE%89%E8%A3%85docker"><span class="toc-number">6.</span> <span class="toc-text">CentOS7 安装docker</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker%E5%AE%89%E8%A3%85"><span class="toc-number">7.</span> <span class="toc-text">Docker安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-compose%E5%AE%89%E8%A3%85%EF%BC%9A"><span class="toc-number">8.</span> <span class="toc-text">Docker-compose安装：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pip%E5%AE%89%E8%A3%85"><span class="toc-number">9.</span> <span class="toc-text">pip安装</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">©2024 By Eschaton</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async="" data-pjax="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax="">
+    function butterfly_categories_card_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<style>li.categoryBar-list-item{width:24%;}.categoryBar-list{max-height: 190px;overflow:auto;}.categoryBar-list::-webkit-scrollbar{width:0!important}@media screen and (max-width: 650px){.categoryBar-list{max-height: 160px;}}</style><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"><div id="categoryBar"><ul class="categoryBar-list"><li class="categoryBar-list-item" style="background:url(https://npm.elemecdn.com/akilar-candyassets/image/cover1.webp);"> <a class="categoryBar-list-link" href="categories/【工具】/">【工具】</a><span class="categoryBar-list-count">11</span><span class="categoryBar-list-descr">密评</span></li><li class="categoryBar-list-item" style="background:url(https://npm.elemecdn.com/akilar-candyassets/image/cover2.webp);"> <a class="categoryBar-list-link" href="categories/【方法】/">【方法】</a><span class="categoryBar-list-count">20</span><span class="categoryBar-list-descr">工具</span></li><li class="categoryBar-list-item" style="background:url(https://npm.elemecdn.com/akilar-candyassets/image/cover3.webp);"> <a class="categoryBar-list-link" href="categories/【密评】/">【密评】</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">方法</span></li><li class="categoryBar-list-item" style="background:url(https://npm.elemecdn.com/akilar-candyassets/image/cover4.webp);"> <a class="categoryBar-list-link" href="categories/【知识】/">【知识】</a><span class="categoryBar-list-count">2</span><span class="categoryBar-list-descr">知识</span></li></ul></div></div>';
+      console.log('已挂载butterfly_categories_card')
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      }
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    butterfly_categories_card_injector_config()
+    }
+  </script><!-- hexo injector body_end end --></body></html>
