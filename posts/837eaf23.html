@@ -26,8 +26,8 @@
 <meta property="og:site_name" content="For those who come after">
 <meta property="og:description" content="右键菜单管理员权限打开cmd设置为win10 12reg add &quot;HKCU\Software\Classes\CLSID\&#123;86ca1aa0-34aa-4e8b-a509-50c905bae2a2&#125;\InprocServer32&quot; &#x2F;f &#x2F;vetaskkill &#x2F;f &#x2F;im explorer.exe &amp; start explorer.exe 设置为">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-26T07:36:12.000Z">
-<meta property="article:modified_time" content="2024-08-27T09:25:14.399Z">
+<meta property="article:published_time" content="2024-07-26T15:36:12.000Z">
+<meta property="article:modified_time" content="2025-12-22T05:16:50.108Z">
 <meta property="article:author" content="Eschaton">
 <meta property="article:tag" content="Windows">
 <meta name="twitter:card" content="summary_large_image">
@@ -218,8 +218,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-26 07:36" pubdate>
-          2024年7月26日 早上
+        <time datetime="2024-07-26 15:36" pubdate>
+          2024年7月26日 下午
         </time>
       </span>
     
@@ -283,7 +283,7 @@
             
               <div class="markdown-body">
                 
-                <link rel="stylesheet" class="aplayer-secondary-style-marker" href="\project\assets\css\APlayer.min.css"><script src="\project\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="右键菜单"><a href="#右键菜单" class="headerlink" title="右键菜单"></a>右键菜单</h1><p>管理员权限打开cmd<br>设置为win10</p>
+                <h1 id="右键菜单"><a href="#右键菜单" class="headerlink" title="右键菜单"></a>右键菜单</h1><p>管理员权限打开cmd<br>设置为win10</p>
 <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nix">reg add <span class="hljs-string">&quot;HKCU<span class="hljs-char escape_">\S</span>oftware<span class="hljs-char escape_">\C</span>lasses<span class="hljs-char escape_">\C</span>LSID<span class="hljs-char escape_">\&#123;</span>86ca1aa0-34aa-4e8b-a509-50c905bae2a2&#125;<span class="hljs-char escape_">\I</span>nprocServer32&quot;</span> <span class="hljs-symbol">/f</span> <span class="hljs-symbol">/ve</span><br>taskkill <span class="hljs-symbol">/f</span> <span class="hljs-symbol">/im</span> explorer.exe &amp; start explorer.exe<br></code></pre></td></tr></table></figure>
 <p>设置为win11</p>
 <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nix">reg delete <span class="hljs-string">&quot;HKCU<span class="hljs-char escape_">\S</span>oftware<span class="hljs-char escape_">\C</span>lasses<span class="hljs-char escape_">\C</span>LSID<span class="hljs-char escape_">\&#123;</span>86ca1aa0-34aa-4e8b-a509-50c905bae2a2&#125;&quot;</span> <span class="hljs-symbol">/f</span> <br>taskkill <span class="hljs-symbol">/f</span> <span class="hljs-symbol">/im</span> explorer.exe &amp; start explorer.exe<br></code></pre></td></tr></table></figure>
