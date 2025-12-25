@@ -2,25 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://eschaton2023.github.io/posts/574eb94.html</loc>
+    
+    <lastmod>2025-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://eschaton2023.github.io/posts/afb69919.html</loc>
+    
+    <lastmod>2025-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://eschaton2023.github.io/posts/0.html</loc>
+    
+    <lastmod>2025-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://eschaton2023.github.io/categories/index.html</loc>
+    
+    <lastmod>2025-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://eschaton2023.github.io/tags/index.html</loc>
-    
-    <lastmod>2025-12-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://eschaton2023.github.io/posts/bd4eef34.html</loc>
-    
-    <lastmod>2025-12-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://eschaton2023.github.io/posts/15c88451.html</loc>
     
     <lastmod>2025-12-25</lastmod>
     
@@ -66,6 +84,15 @@
   
   <url>
     <loc>https://eschaton2023.github.io/posts/c284d296.html</loc>
+    
+    <lastmod>2025-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://eschaton2023.github.io/posts/c494afb.html</loc>
     
     <lastmod>2025-12-25</lastmod>
     
@@ -182,15 +209,6 @@
   </url>
   
   <url>
-    <loc>https://eschaton2023.github.io/posts/c494afb.html</loc>
-    
-    <lastmod>2025-12-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://eschaton2023.github.io/posts/3bbf3c24.html</loc>
     
     <lastmod>2025-12-25</lastmod>
@@ -210,42 +228,6 @@
   
   <url>
     <loc>https://eschaton2023.github.io/posts/18399edd.html</loc>
-    
-    <lastmod>2025-12-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://eschaton2023.github.io/posts/574eb94.html</loc>
-    
-    <lastmod>2025-12-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://eschaton2023.github.io/posts/0.html</loc>
-    
-    <lastmod>2025-12-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://eschaton2023.github.io/posts/afb69919.html</loc>
-    
-    <lastmod>2025-12-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://eschaton2023.github.io/categories/index.html</loc>
     
     <lastmod>2025-12-25</lastmod>
     
@@ -291,6 +273,24 @@
   
   <url>
     <loc>https://eschaton2023.github.io/posts/f593d515.html</loc>
+    
+    <lastmod>2025-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://eschaton2023.github.io/posts/bd4eef34.html</loc>
+    
+    <lastmod>2025-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://eschaton2023.github.io/posts/15c88451.html</loc>
     
     <lastmod>2025-12-25</lastmod>
     
@@ -408,6 +408,20 @@
   </url>
   
   <url>
+    <loc>https://eschaton2023.github.io/tags/Markdown/</loc>
+    <lastmod>2025-12-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://eschaton2023.github.io/tags/Obsidian/</loc>
+    <lastmod>2025-12-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://eschaton2023.github.io/tags/DiskGenius/</loc>
     <lastmod>2025-12-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -458,20 +472,6 @@
   
   <url>
     <loc>https://eschaton2023.github.io/tags/Cloudflare/</loc>
-    <lastmod>2025-12-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://eschaton2023.github.io/tags/Markdown/</loc>
-    <lastmod>2025-12-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://eschaton2023.github.io/tags/Obsidian/</loc>
     <lastmod>2025-12-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
